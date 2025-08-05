@@ -1,0 +1,178 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Admin User"
+    },
+    {
+      "id": 2,
+      "username": "care",
+      "password": "care123",
+      "role": "customer_care",
+      "name": "Customer Care"
+    },
+    {
+      "id": 3,
+      "username": "tech1",
+      "password": "tech123",
+      "role": "technician",
+      "name": "Technician 1"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "555-123-4567",
+      "address": "123 Main St, Anytown",
+      "plan": "Premium",
+      "status": "Active",
+      "installations": [
+        {
+          "id": 1,
+          "type": "Router",
+          "model": "TP-Link Archer C7",
+          "installedDate": "2023-01-15",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "phone": "555-987-6543",
+      "address": "456 Oak Ave, Somewhere",
+      "plan": "Basic",
+      "status": "Active",
+      "installations": [
+        {
+          "id": 2,
+          "type": "Router",
+          "model": "Netgear Nighthawk",
+          "installedDate": "2023-03-22",
+          "status": "Active"
+        },
+        {
+          "id": 3,
+          "type": "Extender",
+          "model": "TP-Link RE200",
+          "installedDate": "2023-05-10",
+          "status": "Active"
+        }
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "title": "Internet not working",
+      "description": "Customer reports no internet connection since morning",
+      "status": "Open",
+      "priority": "High",
+      "customerId": 1,
+      "assignedTo": null,
+      "createdAt": "2023-07-15T10:30:00Z",
+      "updatedAt": "2023-07-15T10:30:00Z",
+      "timeSpent": "0h",
+      "comments": []
+    },
+    {
+      "id": 2,
+      "title": "Router configuration",
+      "description": "Need help setting up new router",
+      "status": "In Progress",
+      "priority": "Medium",
+      "customerId": 2,
+      "assignedTo": 3,
+      "createdAt": "2023-07-14T14:15:00Z",
+      "updatedAt": "2023-07-15T09:45:00Z",
+      "timeSpent": "45m",
+      "comments": [
+        {
+          "id": 1,
+          "text": "Scheduled visit for tomorrow",
+          "author": "Technician 1",
+          "createdAt": "2023-07-15T09:45:00Z"
+        }
+      ]
+    }
+  ],
+  "technicians": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@company.com",
+      "phone": "555-111-2222",
+      "specialization": "Networking",
+      "activeTickets": 2
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@company.com",
+      "phone": "555-333-4444",
+      "specialization": "Installations",
+      "activeTickets": 1
+    }
+  ],
+  "routers": [
+    {
+      "id": 1,
+      "model": "TP-Link Archer C7",
+      "serialNumber": "TPL123456",
+      "status": "Assigned",
+      "assignedTo": 1,
+      "assignedDate": "2023-01-15"
+    },
+    {
+      "id": 2,
+      "model": "Netgear Nighthawk",
+      "serialNumber": "NET789012",
+      "status": "Assigned",
+      "assignedTo": 2,
+      "assignedDate": "2023-03-22"
+    },
+    {
+      "id": 3,
+      "model": "TP-Link RE200",
+      "serialNumber": "TPL345678",
+      "status": "Assigned",
+      "assignedTo": 2,
+      "assignedDate": "2023-05-10"
+    },
+    {
+      "id": 4,
+      "model": "Asus RT-AX88U",
+      "serialNumber": "ASU901234",
+      "status": "Available",
+      "assignedTo": null,
+      "assignedDate": null
+    }
+  ],
+  "ticketAnalytics": {
+    "totalTickets": 42,
+    "openTickets": 12,
+    "inProgressTickets": 8,
+    "resolvedTickets": 22,
+    "averageResolutionTime": "2h 15m",
+    "technicianPerformance": [
+      {
+        "technicianId": 1,
+        "name": "John Doe",
+        "ticketsResolved": 15,
+        "averageTime": "2h 30m"
+      },
+      {
+        "technicianId": 2,
+        "name": "Jane Smith",
+        "ticketsResolved": 22,
+        "averageTime": "1h 45m"
+      }
+    ]
+  }
+}
