@@ -1,34 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
+import Layout from './components/Layout'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import Tickets from './pages/Tickets'
+import TicketDetail from './pages/TicketDetail'
+import Customers from './pages/Customers'
+import CustomerDetail from './pages/CustomerDetail'
+import AdminDashboard from './pages/admin/Dashboard'
+import TechnicianDashboard from './pages/technician/Dashboard'
+import Installations from './pages/Installations'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin', 'technician']}>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="tickets" element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin', 'technician']}>
+                <Tickets />
+              </ProtectedRoute>
+            } />
+            <Route path="tickets/:id" element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin', 'technician']}>
+                <TicketDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="customers" element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin']}>
+                <Customers />
+              </ProtectedRoute>
+            } />
+            <Route path="customers/:id" element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin']}>
+                <CustomerDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="installations" element={
+              <ProtectedRoute allowedRoles={['customer_care', 'admin']}>
+                <Installations />
+              </ProtectedRoute>
+            } />
+            <Route path="admin" element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="technician" element={
+              <ProtectedRoute allowedRoles={['technician']}>
+                <TechnicianDashboard />
+              </ProtectedRoute>
+            } />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
