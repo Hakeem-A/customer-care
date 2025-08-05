@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiUser, FiLock } from 'react-icons/fi'
+import { AuthContext } from '../context/AuthContext'
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('customer_care')
   const navigate = useNavigate()
+  const { login } = useContext(AuthContext)
 
   const handleLogin = (e) => {
     e.preventDefault()
-    // In a real app, you would authenticate here
+    login({ username, role })
     if (role === 'admin') {
       navigate('/admin')
     } else if (role === 'technician') {

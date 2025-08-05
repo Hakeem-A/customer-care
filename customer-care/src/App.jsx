@@ -11,6 +11,8 @@ import CustomerDetail from './pages/CustomerDetail'
 import AdminDashboard from './pages/admin/Dashboard'
 import TechnicianDashboard from './pages/technician/Dashboard'
 import Installations from './pages/Installations'
+import './index.css'
+
 
 function App() {
   return (
