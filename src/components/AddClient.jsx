@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 const AddClient = ({ onClientAdded }) => {
   const [form, setForm] = useState({
@@ -21,28 +22,50 @@ const AddClient = ({ onClientAdded }) => {
   };
 
   return (
-    <div>
-      <h2>Add Client Information</h2>
+    <Box sx={{ maxWidth: 400, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Add Client Information</Typography>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input name="name" value={form.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Contact:</label>
-          <input name="contact" value={form.contact} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Address:</label>
-          <input name="address" value={form.address} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input name="email" value={form.email} onChange={handleChange} required />
-        </div>
-        <button type="submit">Add Client</button>
+        <TextField
+          label="Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <TextField
+          label="Contact"
+          name="contact"
+          value={form.contact}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <TextField
+          label="Address"
+          name="address"
+          value={form.address}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <TextField
+          label="Email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+          Add Client
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 

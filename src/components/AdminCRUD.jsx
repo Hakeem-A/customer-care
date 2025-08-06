@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button, TextField, Typography, List, ListItem } from '@mui/material';
 
 const initialData = [
   { id: 1, name: 'John Doe', email: 'john@example.com' },
@@ -37,24 +38,49 @@ const AdminCRUD = () => {
   };
 
   return (
-    <div>
-      <h2>Admin CRUD Operations</h2>
+    <Box sx={{ maxWidth: 500, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Admin CRUD Operations</Typography>
       <form onSubmit={editing ? handleUpdate : handleAdd}>
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Name" required />
-        <input name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
-        <button type="submit">{editing ? 'Update' : 'Add'}</button>
-        {editing && <button type="button" onClick={() => { setEditing(false); setForm({ id: null, name: '', email: '' }); }}>Cancel</button>}
+        <TextField
+          label="Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          required
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          required
+          fullWidth
+          margin="normal"
+        />
+        <Button type="submit" variant="contained" color="primary" sx={{ mt: 1 }}>
+          {editing ? 'Update' : 'Add'}
+        </Button>
+        {editing && (
+          <Button type="button" onClick={() => { setEditing(false); setForm({ id: null, name: '', email: '' }); }} sx={{ mt: 1, ml: 1 }}>
+            Cancel
+          </Button>
+        )}
       </form>
-      <ul>
+      <List>
         {data.map(entry => (
-          <li key={entry.id}>
+          <ListItem key={entry.id} secondaryAction={
+            <>
+              <Button variant="outlined" size="small" onClick={() => handleEdit(entry)} sx={{ mr: 1 }}>Edit</Button>
+              <Button variant="outlined" color="error" size="small" onClick={() => handleDelete(entry.id)}>Delete</Button>
+            </>
+          }>
             {entry.name} ({entry.email})
-            <button onClick={() => handleEdit(entry)}>Edit</button>
-            <button onClick={() => handleDelete(entry.id)}>Delete</button>
-          </li>
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 };
 

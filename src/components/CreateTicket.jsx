@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button, TextField, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
 
 const CreateTicket = ({ onTicketCreated }) => {
   const [form, setForm] = useState({
@@ -21,32 +22,56 @@ const CreateTicket = ({ onTicketCreated }) => {
   };
 
   return (
-    <div>
-      <h2>Create Ticket</h2>
+    <Box sx={{ maxWidth: 400, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Create Ticket</Typography>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input name="title" value={form.title} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea name="description" value={form.description} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Client:</label>
-          <input name="client" value={form.client} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Priority:</label>
-          <select name="priority" value={form.priority} onChange={handleChange}>
-            <option value="Low">Low</option>
-            <option value="Normal">Normal</option>
-            <option value="High">High</option>
-          </select>
-        </div>
-        <button type="submit">Create Ticket</button>
+        <TextField
+          label="Title"
+          name="title"
+          value={form.title}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <TextField
+          label="Description"
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+          multiline
+          rows={3}
+        />
+        <TextField
+          label="Client"
+          name="client"
+          value={form.client}
+          onChange={handleChange}
+          fullWidth
+          required
+          margin="normal"
+        />
+        <FormControl fullWidth margin="normal">
+          <InputLabel>Priority</InputLabel>
+          <Select
+            name="priority"
+            value={form.priority}
+            label="Priority"
+            onChange={handleChange}
+          >
+            <MenuItem value="Low">Low</MenuItem>
+            <MenuItem value="Normal">Normal</MenuItem>
+            <MenuItem value="High">High</MenuItem>
+          </Select>
+        </FormControl>
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+          Create Ticket
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 

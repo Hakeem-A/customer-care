@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button, Typography, List, ListItem } from '@mui/material';
 
 const InstallationsRouters = () => {
   const [installations, setInstallations] = useState([]); // Placeholder data
@@ -24,26 +25,32 @@ const InstallationsRouters = () => {
   };
 
   return (
-    <div>
-      <h2>Installations & Routers</h2>
-      <section>
-        <h3>Update Installation</h3>
-        <button onClick={handleUpdateInstallation}>Update Installation</button>
-      </section>
-      <section>
-        <h3>List Routers</h3>
-        <button onClick={handleListRouters}>Show Routers</button>
-        <ul>
+    <Box sx={{ maxWidth: 600, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Installations & Routers</Typography>
+      <Box mb={2}>
+        <Typography variant="h6">Update Installation</Typography>
+        <Button variant="contained" color="primary" onClick={handleUpdateInstallation} sx={{ mt: 1 }}>
+          Update Installation
+        </Button>
+      </Box>
+      <Box>
+        <Typography variant="h6">List Routers</Typography>
+        <Button variant="contained" color="secondary" onClick={handleListRouters} sx={{ mt: 1, mb: 1 }}>
+          Show Routers
+        </Button>
+        <List>
           {routers.map(router => (
-            <li key={router.id}>
+            <ListItem key={router.id}>
               {router.name} - {router.status}
-              <button onClick={() => handleRecoverRouter(router.id)}>Recover</button>
-            </li>
+              <Button variant="outlined" size="small" onClick={() => handleRecoverRouter(router.id)} sx={{ ml: 2 }}>
+                Recover
+              </Button>
+            </ListItem>
           ))}
-        </ul>
-        {recoveryMessage && <p>{recoveryMessage}</p>}
-      </section>
-    </div>
+        </List>
+        {recoveryMessage && <Typography color="success.main">{recoveryMessage}</Typography>}
+      </Box>
+    </Box>
   );
 };
 

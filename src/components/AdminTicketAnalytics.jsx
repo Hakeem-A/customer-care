@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box, Typography, List, ListItem } from '@mui/material';
 
 const AdminTicketAnalytics = () => {
   // Placeholder analytics data
@@ -8,16 +9,16 @@ const AdminTicketAnalytics = () => {
   const avgResolutionTime = '2 days 4 hours';
 
   return (
-    <div>
-      <h2>Ticket Analytics</h2>
-      <ul>
-        <li><strong>Total Tickets:</strong> {totalTickets}</li>
-        <li><strong>Open Tickets:</strong> {openTickets}</li>
-        <li><strong>Closed Tickets:</strong> {closedTickets}</li>
-        <li><strong>Average Resolution Time:</strong> {avgResolutionTime}</li>
-      </ul>
+    <Box sx={{ maxWidth: 400, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Ticket Analytics</Typography>
+      <List>
+        <ListItem><strong>Total Tickets:</strong> {totalTickets}</ListItem>
+        <ListItem><strong>Open Tickets:</strong> {openTickets}</ListItem>
+        <ListItem><strong>Closed Tickets:</strong> {closedTickets}</ListItem>
+        <ListItem><strong>Average Resolution Time:</strong> {avgResolutionTime}</ListItem>
+      </List>
       {/* You can add charts here using a library like Chart.js or Recharts */}
-    </div>
+    </Box>
   );
 };
 

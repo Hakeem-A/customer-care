@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiUser, FiLock } from 'react-icons/fi'
 import { AuthContext } from '../context/AuthContext'
+import { Box, Button, Typography, TextField, InputAdornment, MenuItem, Select, FormControl, InputLabel, Paper } from '@mui/material';
 
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -23,85 +24,72 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <Box minHeight="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgcolor="#f3f4f6">
+      <Paper elevation={3} sx={{ p: 4, minWidth: 350 }}>
+        <Typography variant="h4" align="center" mb={2} fontWeight={700}>
           Customer Care System
-        </h2>
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleLogin}>
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-                Login As
-              </label>
-              <select
-                id="role"
-                name="role"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="customer_care">Customer Care</option>
-                <option value="admin">Admin</option>
-                <option value="technician">Technician</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
-              </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiUser className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  required
-                  className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md p-2 border"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiLock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md p-2 border"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Sign in
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+        </Typography>
+        <form onSubmit={handleLogin}>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="role-label">Login As</InputLabel>
+            <Select
+              labelId="role-label"
+              id="role"
+              name="role"
+              value={role}
+              label="Login As"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <MenuItem value="customer_care">Customer Care</MenuItem>
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="technician">Technician</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            label="Username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            required
+            margin="normal"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FiUser />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            required
+            margin="normal"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FiLock />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2 }}
+          >
+            Sign in
+          </Button>
+        </form>
+      </Paper>
+    </Box>
   )
 }
 

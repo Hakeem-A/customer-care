@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AdminActivity from './AdminActivity';
 import AdminCRUD from './AdminCRUD';
 import AdminTicketAnalytics from './AdminTicketAnalytics';
+import { Box, Button, Stack } from '@mui/material';
 
 const AdminDashboard = () => {
   const [showActivity, setShowActivity] = useState(false);
@@ -9,16 +10,22 @@ const AdminDashboard = () => {
   const [showAnalytics, setShowAnalytics] = useState(false);
 
   return (
-    <div>
-      {/* ...existing code... */}
-      <button onClick={() => setShowActivity(true)}>View Activity</button>
+    <Box>
+      <Stack direction="row" spacing={2} mb={2}>
+        <Button variant="contained" color="primary" onClick={() => setShowActivity(true)}>
+          View Activity
+        </Button>
+        <Button variant="contained" color="secondary" onClick={() => setShowCRUD(true)}>
+          CRUD Operations
+        </Button>
+        <Button variant="contained" onClick={() => setShowAnalytics(true)}>
+          Ticket Analytics
+        </Button>
+      </Stack>
       {showActivity && <AdminActivity />}
-      <button onClick={() => setShowCRUD(true)}>CRUD Operations</button>
       {showCRUD && <AdminCRUD />}
-      <button onClick={() => setShowAnalytics(true)}>Ticket Analytics</button>
       {showAnalytics && <AdminTicketAnalytics />}
-      {/* ...existing code... */}
-    </div>
+    </Box>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const AdminActivity = () => {
   // Placeholder activity data
@@ -10,27 +11,29 @@ const AdminActivity = () => {
   ]);
 
   return (
-    <div>
-      <h2>Customer Care & Technician Activity</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Action</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {activities.map(activity => (
-            <tr key={activity.id}>
-              <td>{activity.user}</td>
-              <td>{activity.action}</td>
-              <td>{activity.time}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Box sx={{ maxWidth: 700, mx: 'auto', p: 2, boxShadow: 2, borderRadius: 2 }}>
+      <Typography variant="h5" mb={2}>Customer Care & Technician Activity</Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>User</TableCell>
+              <TableCell>Action</TableCell>
+              <TableCell>Time</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {activities.map(activity => (
+              <TableRow key={activity.id}>
+                <TableCell>{activity.user}</TableCell>
+                <TableCell>{activity.action}</TableCell>
+                <TableCell>{activity.time}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 
